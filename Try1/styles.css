@@ -1,0 +1,708 @@
+/*
+========================================
+ESTILOS PRINCIPALES - LEGALSURVEY
+========================================
+Archivo: styles.css
+Descripción: Hoja de estilos principal para el proyecto LegalSurvey
+Incluye estilos para página de encuesta y galería de ideas
+========================================
+*/
+
+/* ========================================
+   VARIABLES DE COLOR Y ESTILOS GLOBALES
+   ======================================== */
+:root {
+    /* Paleta de colores principal */
+    --dark-blue: #1A3A5F;      /* Azul oscuro para elementos principales */
+    --red: #E63946;            /* Rojo para botones y elementos destacados */
+    --dark-gray: #333333;      /* Gris oscuro para texto principal */
+    --light-gray: #F5F5F5;     /* Gris claro para fondos */
+    --medium-gray: #D9D9D9;    /* Gris medio para bordes y elementos secundarios */
+    --white: #FFFFFF;          /* Blanco para fondos de tarjetas y texto */
+    
+    /* Efectos visuales */
+    --shadow: 0 4px 8px rgba(0,0,0,0.1);  /* Sombra suave para tarjetas */
+}
+
+/* ========================================
+   ESTILOS BASE Y RESET
+   ======================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--light-gray);
+    color: var(--dark-gray);
+    line-height: 1.6;
+}
+
+/* ========================================
+   CONTENEDOR PRINCIPAL
+   ======================================== */
+.poster-container {
+    width: 100%;
+    min-height: 100vh;
+    background-color: var(--light-gray);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ========================================
+   DECORACIONES DE FONDO
+   ======================================== */
+.bg-decoration {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(26, 58, 95, 0.1) 0%, rgba(230, 57, 70, 0.1) 100%);
+    filter: blur(60px);
+    z-index: 0;
+}
+
+.bg-decoration:nth-child(1) {
+    top: -100px;
+    right: -100px;
+}
+
+.bg-decoration:nth-child(2) {
+    bottom: -100px;
+    left: -100px;
+}
+
+/* ========================================
+   CABECERA (HEADER)
+   ======================================== */
+header {
+    background-color: var(--dark-blue);
+    padding: 15px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: var(--shadow);
+    position: relative;
+    z-index: 10;
+}
+
+/* ========================================
+   LOGO
+   ======================================== */
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo-icon {
+    width: 40px;
+    height: 40px;
+    background-color: var(--white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+}
+
+.logo-icon i {
+    color: var(--dark-blue);
+    font-size: 24px;
+}
+
+.logo-text {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--white);
+}
+
+/* ========================================
+   NAVEGACIÓN
+   ======================================== */
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin-right: 25px;
+}
+
+nav ul li a {
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 16px;
+    transition: color 0.3s;
+    display: flex;
+    align-items: center;
+}
+
+nav ul li a i {
+    margin-right: 5px;
+    font-size: 18px;
+}
+
+nav ul li a:hover {
+    color: var(--medium-gray);
+}
+
+nav ul li a.active {
+    color: var(--medium-gray);
+    border-bottom: 2px solid var(--medium-gray);
+    padding-bottom: 2px;
+}
+
+/* ========================================
+   ÁREA DE USUARIO
+   ======================================== */
+.user-area {
+    display: flex;
+    align-items: center;
+}
+
+.notification {
+    color: var(--white);
+    margin-right: 20px;
+    cursor: pointer;
+    position: relative;
+}
+
+.notification-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: var(--red);
+    color: var(--white);
+    font-size: 10px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.user-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: var(--medium-gray);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--dark-gray);
+    font-weight: 500;
+}
+
+/* ========================================
+   CONTENIDO PRINCIPAL
+   ======================================== */
+main {
+    padding: 40px 5%;
+    position: relative;
+    z-index: 5;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* ========================================
+   BARRA DE PROGRESO (PÁGINA DE ENCUESTA)
+   ======================================== */
+.progress-container {
+    margin-bottom: 30px;
+}
+
+.progress-text {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 10px;
+    color: var(--dark-blue);
+}
+
+.progress-bar {
+    height: 8px;
+    background-color: var(--medium-gray);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 12.5%; /* 1 of 8 questions */
+    background-color: var(--dark-blue);
+    border-radius: 4px;
+}
+
+/* ========================================
+   TARJETA DE PREGUNTA (PÁGINA DE ENCUESTA)
+   ======================================== */
+.question-card {
+    background-color: var(--white);
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: var(--shadow);
+    margin-bottom: 30px;
+}
+
+.question-number {
+    color: var(--red);
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.question-text {
+    font-size: 22px;
+    font-weight: 500;
+    margin-bottom: 25px;
+    color: var(--dark-gray);
+}
+
+/* ========================================
+   OPCIONES DE RESPUESTA (PÁGINA DE ENCUESTA)
+   ======================================== */
+.options-container {
+    margin-bottom: 30px;
+}
+
+.option {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    margin-bottom: 15px;
+    border: 2px solid var(--medium-gray);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.option:hover {
+    border-color: var(--dark-blue);
+    background-color: rgba(26, 58, 95, 0.05);
+}
+
+.option.selected {
+    border-color: var(--dark-blue);
+    background-color: rgba(26, 58, 95, 0.1);
+}
+
+.option-radio {
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--medium-gray);
+    border-radius: 50%;
+    margin-right: 15px;
+    position: relative;
+}
+
+.option.selected .option-radio {
+    border-color: var(--dark-blue);
+}
+
+.option.selected .option-radio::after {
+    content: '';
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--dark-blue);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.option-text {
+    font-size: 16px;
+}
+
+/* ========================================
+   EXPLICACIÓN DE PREGUNTA (PÁGINA DE ENCUESTA)
+   ======================================== */
+.explanation {
+    background-color: rgba(26, 58, 95, 0.05);
+    border-left: 4px solid var(--dark-blue);
+    padding: 15px;
+    border-radius: 0 8px 8px 0;
+    margin-top: 20px;
+}
+
+.explanation-title {
+    font-weight: 500;
+    margin-bottom: 5px;
+    color: var(--dark-blue);
+}
+
+.explanation-text {
+    font-size: 14px;
+}
+
+/* ========================================
+   NAVEGACIÓN ENTRE PREGUNTAS (PÁGINA DE ENCUESTA)
+   ======================================== */
+.navigation {
+    display: flex;
+    justify-content: space-between;
+}
+
+.nav-button {
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+}
+
+.nav-button i {
+    margin-right: 8px;
+}
+
+.nav-button.back {
+    background-color: transparent;
+    color: var(--dark-gray);
+    border: 2px solid var(--medium-gray);
+}
+
+.nav-button.back:hover {
+    border-color: var(--dark-blue);
+    color: var(--dark-blue);
+}
+
+.nav-button.next {
+    background-color: var(--red);
+    color: var(--white);
+    border: none;
+}
+
+.nav-button.next:hover {
+    background-color: #d02836;
+}
+
+.nav-button.next i {
+    margin-left: 8px;
+    margin-right: 0;
+}
+
+.nav-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* ========================================
+   TÍTULOS DE PÁGINA (GALERÍA DE IDEAS)
+   ======================================== */
+.page-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--dark-blue);
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.page-subtitle {
+    font-size: 18px;
+    color: var(--dark-gray);
+    margin-bottom: 40px;
+    text-align: center;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ========================================
+   GRID DE IDEAS (GALERÍA DE IDEAS)
+   ======================================== */
+.ideas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+/* ========================================
+   TARJETA DE IDEA (GALERÍA DE IDEAS)
+   ======================================== */
+.idea-card {
+    background-color: var(--white);
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.idea-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+.idea-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 100%;
+    background-color: var(--dark-blue);
+}
+
+.idea-card.new::before {
+    background-color: var(--red);
+}
+
+/* ========================================
+   CONTENIDO DE TARJETA DE IDEA (GALERÍA DE IDEAS)
+   ======================================== */
+.idea-number {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--red);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.idea-number i {
+    margin-right: 8px;
+    font-size: 18px;
+}
+
+.idea-title {
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--dark-gray);
+    margin-bottom: 15px;
+}
+
+.idea-description {
+    font-size: 16px;
+    color: var(--dark-gray);
+    margin-bottom: 20px;
+    flex-grow: 1;
+}
+
+.idea-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    color: var(--medium-gray);
+}
+
+.idea-date {
+    display: flex;
+    align-items: center;
+}
+
+.idea-date i {
+    margin-right: 5px;
+    font-size: 16px;
+}
+
+.idea-status {
+    display: flex;
+    align-items: center;
+}
+
+.idea-status i {
+    margin-right: 5px;
+    font-size: 16px;
+}
+
+/* ========================================
+   BOTÓN PARA AGREGAR IDEA (GALERÍA DE IDEAS)
+   ======================================== */
+.add-idea-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--red);
+    color: var(--white);
+    border: none;
+    border-radius: 12px;
+    padding: 15px 30px;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin: 0 auto;
+    max-width: 300px;
+}
+
+.add-idea-btn:hover {
+    background-color: #d02836;
+}
+
+.add-idea-btn i {
+    margin-right: 10px;
+}
+
+/* ========================================
+   DISEÑO RESPONSIVO
+   ======================================== */
+
+/* Estilos para pantallas grandes (PC) */
+@media (max-width: 1200px) {
+    main {
+        max-width: 100%;
+    }
+}
+
+/* Estilos para tablet */
+@media (max-width: 768px) {
+    header {
+        padding: 15px;
+        flex-wrap: wrap;
+    }
+    
+    .logo {
+        order: 1;
+        flex: 1;
+    }
+    
+    nav {
+        order: 3;
+        width: 100%;
+        margin-top: 10px;
+        justify-content: center;
+    }
+    
+    nav ul {
+        justify-content: center;
+    }
+    
+    nav ul li {
+        margin: 0 10px;
+    }
+    
+    .user-area {
+        order: 2;
+    }
+    
+    main {
+        padding: 20px;
+    }
+    
+    .question-card {
+        padding: 20px;
+    }
+    
+    .question-text {
+        font-size: 18px;
+    }
+    
+    .option {
+        padding: 12px;
+    }
+    
+    .option-text {
+        font-size: 14px;
+    }
+    
+    .nav-button {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+    
+    .page-title {
+        font-size: 28px;
+    }
+    
+    .page-subtitle {
+        font-size: 16px;
+    }
+    
+    .ideas-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 20px;
+    }
+}
+
+/* Estilos para móvil */
+@media (max-width: 480px) {
+    header {
+        padding: 10px;
+    }
+    
+    .logo-text {
+        font-size: 16px;
+    }
+    
+    .logo-icon {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .logo-icon i {
+        font-size: 18px;
+    }
+    
+    nav ul li a {
+        font-size: 14px;
+    }
+    
+    main {
+        padding: 15px;
+    }
+    
+    .question-card {
+        padding: 15px;
+    }
+    
+    .question-text {
+        font-size: 16px;
+    }
+    
+    .option {
+        padding: 10px;
+    }
+    
+    .option-text {
+        font-size: 13px;
+    }
+    
+    .nav-button {
+        padding: 8px 15px;
+        font-size: 13px;
+    }
+    
+    .page-title {
+        font-size: 24px;
+    }
+    
+    .page-subtitle {
+        font-size: 14px;
+    }
+    
+    .ideas-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .idea-card {
+        padding: 20px;
+    }
+    
+    .idea-title {
+        font-size: 20px;
+    }
+    
+    .idea-description {
+        font-size: 14px;
+    }
+}

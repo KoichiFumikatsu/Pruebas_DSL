@@ -1,0 +1,396 @@
+/**
+ * styles.css - Estilos LegalSurvey (versión AZC minimal)
+ * ------------------------------------------------------------
+ * Objetivo:
+ * - Navbar minimal: Logo + Contáctanos
+ * - Estética blanca, limpia (similar a la versión anterior)
+ * - Colores tomados del manual:
+ *   Rojo #be1622, Gris oscuro #353132, Gris #9d9d9c, Azul #003a5d
+ */
+
+/* ============================================================
+   1) Variables + reset
+   ============================================================ */
+:root{
+  --azc-red: #be1622;
+  --azc-dark: #353132;
+  --azc-gray: #9d9d9c;
+  --azc-blue: #003a5d;
+
+  /* Patrones SVG embebidos (data URI) */
+  --azc-pattern-left: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='520' height='900' viewBox='0 0 520 900'%3E%3Cg fill='none' stroke-width='18'%3E%3Cpath d='M-40 120 L260 -80 L560 220' stroke='%23003a5d'/%3E%3Cpath d='M-60 190 L240 -10 L540 290' stroke='%23be1622'/%3E%3Cpath d='M-80 260 L220 60 L520 360' stroke='%239d9d9c'/%3E%3Cpath d='M-100 330 L200 130 L500 430' stroke='%23003a5d'/%3E%3C/g%3E%3C/svg%3E");
+
+  --azc-pattern-right: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='520' height='900' viewBox='0 0 520 900'%3E%3Cg fill='none' stroke-width='18'%3E%3Cpath d='M560 140 L260 -60 L-40 240' stroke='%23003a5d'/%3E%3Cpath d='M580 210 L280 10 L-20 310' stroke='%23be1622'/%3E%3Cpath d='M600 280 L300 80 L0 380' stroke='%239d9d9c'/%3E%3Cpath d='M620 350 L320 150 L20 450' stroke='%23003a5d'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;  color: var(--azc-dark);
+  background: #fff;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* “Aire” pero con presencia visual */
+.page{
+  position: relative;
+}
+
+/* Patrones laterales sutiles (pseudo-elementos) */
+.page::before,
+.page::after{
+  content:"";
+  position: fixed;
+  top: 110px;                 /* debajo del navbar */
+  width: 320px;
+  height: 75vh;
+  pointer-events: none;
+  opacity: .10;               /* controla qué tan sutil se ve */
+  background-repeat: no-repeat;
+  background-size: contain;
+  filter: saturate(1.05);
+  z-index: 0;
+}
+
+/* Izquierda */
+.page::before{
+  left: -140px;
+  transform: rotate(0deg);
+  background-image: var(--azc-pattern-left);
+}
+
+/* Derecha */
+.page::after{
+  right: -140px;
+  transform: rotate(0deg);
+  background-image: var(--azc-pattern-right);
+}
+
+/* Asegura que el contenido esté encima del patrón */
+.shell, .card, .surveyheader, .actions{
+  position: relative;
+  z-index: 1;
+}
+
+/* ============================================================
+   2) Navbar minimal (solo Logo + Contáctanos)
+   ============================================================ */
+/* Navbar azul corporativo */
+.topbar.topbar--azc{
+  background: var(--azc-blue);
+  border-bottom: none;
+  box-shadow: 0 6px 20px rgba(0,0,0,.10);
+}
+
+.topbar__inner.topbar__inner--azc{
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 12px 18px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+/* Marca */
+.brand.brand--azc{
+  text-decoration:none;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  color:#fff;
+}
+.brand__logo{
+  width:32px;height:32px;border-radius:10px;
+  display:grid;place-items:center;
+  background: rgba(255,255,255,.14);
+}
+.brand__name{
+  font-weight: 900;
+  letter-spacing: .6px;
+}
+
+/* Link contáctanos (pill blanco sutil) */
+.topnav__link.topnav__link--azc{
+  text-decoration:none;
+  font-weight: 700;
+  letter-spacing: .3px;
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.28);
+  background: rgba(255,255,255,.08);
+  transition: background .15s ease, border-color .15s ease;
+}
+.topnav__link.topnav__link--azc:hover{
+  background: rgba(255,255,255,.14);
+  border-color: rgba(255,255,255,.40);
+}
+
+
+/* ============================================================
+   3) Layout principal (centrado y con aire)
+   ============================================================ */
+.page{
+  padding: 26px 16px 40px;
+}
+
+.shell{
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+/* Header de encuesta */
+.surveyheader{
+  margin: 18px 0 14px;
+}
+.surveyheader__text{
+  text-align:center;
+  font-weight: 800;
+  color: var(--azc-dark);
+  margin-bottom: 10px;
+}
+
+/* Barra de progreso minimal, acento azul */
+.progress{
+  height: 8px;
+  width: 100%;
+  background: rgba(157,157,156,.25);
+  border-radius: 999px;
+  overflow:hidden;
+}
+.progress__bar{
+  height: 100%;
+  width: 0%;
+  background: var(--azc-blue);
+  border-radius: 999px;
+  transition: width .25s ease;
+}
+
+/* ============================================================
+   4) Card + opciones (clean)
+   ============================================================ */
+.card{
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 22px;
+  border: 1px solid var(--line);
+}
+
+.card__kicker{
+  color: var(--azc-red);
+  font-weight: 800;
+  font-size: 12px;
+  letter-spacing: 0.6px;     /* look editorial */
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+
+.card__title{
+  margin: 0 0 16px;
+  font-size: 20px;
+  line-height: 1.35;
+  font-weight: 700;          /* Montserrat se ve mejor en 700 que 800 aquí */
+  letter-spacing: -0.2px;    /* más elegante, menos “robótica” */
+  color: var(--azc-dark);
+}
+
+.choices{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  margin-bottom: 14px;
+}
+
+/* Opción estilo “fila minimal” */
+.choice{
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 12px 12px;
+  display:flex;
+  gap: 10px;
+  align-items:flex-start;
+  cursor:pointer;
+  background:#fff;
+  transition: border-color .15s ease, box-shadow .15s ease, background .15s ease;
+}
+.choice:hover{
+  border-color: rgba(0,58,93,.25);
+  box-shadow: 0 8px 22px rgba(17,24,39,.06);
+}
+.choice input{margin-top: 3px;}
+.choice__text{
+  font-size: 14px;
+  line-height: 1.35;
+  font-weight: 500;
+  color: var(--azc-dark);
+}
+
+/* Seleccionado: borde azul sutil + fondo tenue */
+.choice.is-selected{
+  border-color: rgba(0,58,93,.55);
+  background: rgba(0,58,93,.05);
+}
+
+/* ============================================================
+   5) Explicación (caja suave, sin “pesadez”)
+   ============================================================ */
+.explain{
+  margin-top: 10px;
+  border-radius: 12px;
+  padding: 14px;
+  border: 1px solid rgba(157,157,156,.28);
+  background: rgba(157,157,156,.10);
+}
+
+.explain__title{
+  font-weight: 900;
+  font-size: 13px;
+  margin-bottom: 6px;
+  color: var(--azc-blue);
+}
+.explain__text{
+  margin:0;
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(53,49,50,.88);
+  line-height: 1.5;
+}
+
+/* ============================================================
+   6) Botones (AZC)
+   ============================================================ */
+.actions{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  margin-top: 14px;
+}
+
+.btn{
+  border-radius: 12px;
+  padding: 12px 16px;
+  font-weight: 900;
+  border: 1px solid transparent;
+  cursor:pointer;
+  min-width: 140px;
+}
+
+.btn:disabled{opacity:.55; cursor:not-allowed;}
+
+/* Anterior: outline gris */
+.btn--ghost{
+  background:#fff;
+  border-color: rgba(157,157,156,.45);
+  color: var(--azc-dark);
+}
+
+/* Siguiente: rojo corporativo */
+.btn--primary{
+  background: var(--azc-red);
+  color:#fff;
+  box-shadow: 0 10px 18px rgba(190,22,34,.18);
+}
+
+/* ============================================================
+   7) Modal (se mantiene, ajustado a la paleta)
+   ============================================================ */
+.modal{
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity .18s ease, visibility .18s ease;
+  z-index: 999;
+}
+.modal.is-open{
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+.modal__overlay{
+  position:absolute;
+  inset:0;
+  background: rgba(53,49,50,.55);
+}
+.modal__dialog{
+  position: relative;
+  width: min(560px, 100%);
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 20px 60px rgba(0,0,0,.22);
+  overflow: hidden;
+  border: 1px solid var(--line);
+}
+.modal__header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 10px;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--line);
+}
+.modal__title{
+  font-weight: 900;
+  color: var(--azc-dark);
+}
+.modal__x{
+  border: 0;
+  background: rgba(157,157,156,.18);
+  border-radius: 10px;
+  padding: 8px 10px;
+  cursor: pointer;
+}
+.modal__body{
+  padding: 14px 16px;
+  color: rgba(53,49,50,.90);
+  line-height: 1.5;
+}
+.modal__footer{
+  display:flex;
+  justify-content:flex-end;
+  gap: 10px;
+  padding: 14px 16px;
+  border-top: 1px solid var(--line);
+}
+
+/* ============================================================
+   8) Responsive (tablet / móvil)
+   ============================================================ */
+@media (max-width: 900px){
+  .topbar__inner{padding: 12px 14px;}
+}
+
+@media (max-width: 720px){
+  .page{padding: 18px 12px 30px;}
+  .card{padding: 16px;}
+  .card__title{font-size: 18px;}
+
+  /* Botones en columna */
+  .btn{min-width: 120px; width: 100%;}
+  .actions{flex-direction: column-reverse;}
+}
+
+@media (max-width: 420px){
+  .modal__footer{flex-direction: column;}
+  .modal__footer .btn{width:100%; min-width:auto;}
+}
+@media (max-width: 720px){
+  .page::before,
+  .page::after{
+    opacity: .06;
+    width: 240px;
+    left: -160px;
+    right: -160px;
+    top: 90px;
+  }
+}
+
